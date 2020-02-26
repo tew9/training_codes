@@ -7,7 +7,7 @@ namespace MediaWorld.Storage.Repositories
 {
   public class AudioRepository
   {
-    private static readonly List<AMedia> _lib = new List<AMedia>()
+    private static readonly List<AAudio> _lib = new List<AAudio>()
     {
       new Song() { Title = "Song 1"},
       new Song() { Title = "Song 2"},
