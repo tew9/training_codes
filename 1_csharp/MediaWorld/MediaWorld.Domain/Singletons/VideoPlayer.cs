@@ -1,4 +1,4 @@
-namespace MediaWorld.Domain.Models
+namespace MediaWorld.Domain.Singletons
 {
   public class VideoPlayer
   {

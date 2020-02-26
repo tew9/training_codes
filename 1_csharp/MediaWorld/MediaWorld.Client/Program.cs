@@ -1,5 +1,6 @@
 ﻿using System;
 using MediaWorld.Domain.Models;
+using MediaWorld.Domain.Singletons;
 
 namespace MediaWorld.Client
 {
@@ -19,8 +20,14 @@ namespace MediaWorld.Client
       // middle step
       // AudioPlayer.Play();
 
-      var ap = AudioPlayer.GetInstance();
-      var ap2 = AudioPlayer.Instance;
+      // final-ish step
+      // var ap = AudioPlayer.GetInstance();
+
+      // the csharp way
+      var ap = AudioPlayer.Instance;
+      var s = new Song();
+
+      ap.Play(s);
     }
   }
 }
