@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MediaWorld.Domain.Models;
 using MediaWorld.Domain.Singletons;
 using MediaWorld.Storage;
@@ -9,10 +10,12 @@ namespace MediaWorld.Client
 {
   internal class Program
   {
+    private static readonly AudioRepository _ar = new AudioRepository();
+
     private static void Main(string[] args)
     {
       PlayAudio();
-      //FileAdapter.Write();
+      //FileAdapter.Write(_ar.List().ToList());
     }
 
     private static void PlayAudio()
