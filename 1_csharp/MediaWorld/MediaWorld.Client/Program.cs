@@ -1,6 +1,7 @@
 ﻿using System;
 using MediaWorld.Domain.Models;
 using MediaWorld.Domain.Singletons;
+using MediaWorld.Storage;
 
 namespace MediaWorld.Client
 {
@@ -25,9 +26,15 @@ namespace MediaWorld.Client
 
       // the csharp way
       var ap = AudioPlayer.Instance;
-      var s = new Song();
-
-      ap.Play(s);
+      var ac = new AudioCollection();
+      
+      if (ac.Playlist() != null)
+      {
+        foreach (var item in ac.Playlist())
+        {
+            ap.Play(item);
+        }
+      }
     }
   }
 }
