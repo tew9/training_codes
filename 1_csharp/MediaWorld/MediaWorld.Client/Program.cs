@@ -1,12 +1,26 @@
 ﻿using System;
+using MediaWorld.Domain.Models;
 
 namespace MediaWorld.Client
 {
-    class Program
+  internal class Program
+  {
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+      PlayAudio();
     }
+
+    private static void PlayAudio()
+    {
+      // first step
+      // AudioPlayer ap = new AudioPlayer();
+      // Console.WriteLine(ap);
+
+      // middle step
+      // AudioPlayer.Play();
+
+      var ap = AudioPlayer.GetInstance();
+      var ap2 = AudioPlayer.Instance;
+    }
+  }
 }
