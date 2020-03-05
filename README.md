@@ -18,6 +18,8 @@ the official training code
 - `dotnet new console -n <project_name>`, create a new console project, .exe assembly
 - `dotnet new classlib -n <project_name>`, create a new class library project, .dll assembly
 - `dotnet new xunit -n <project_name>`, create a new test library project, .exe assembly
+- `dotnet add <project> reference <project>`, link to another project in the solution
+- `dotnet add <project> package <package>`, download outside library into current project
 - `dotnet tool install -g dotnet-ef`, install ef core cli tooling
 - `dotnet ef migrations add`, create a migration for the current entity state
 - `dotnet ef database update`, apply current migrations to database

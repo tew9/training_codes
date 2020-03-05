@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storing.Databases;
 
@@ -11,7 +13,26 @@ namespace PizzaBox.Storing.Repositories
 
     public List<Pizza> Get()
     {
-      return _db.Pizzas.ToList();
+      return _db.Pizza.Include(p => p.Crust).Include(p => p.Size).Include(p => p.Toppings).ToList();
+    }
+
+    public Pizza Get(long id)
+    {
+      return _db.Pizza.SingleOrDefault(p => p.PizzaId == id);
+    }
+
+    public bool Post(Pizza pizza)
+    {
+      _db.Pizza.Add(pizza);
+      return _db.SaveChanges() == 1;
+    }
+
+    public bool Put(Pizza pizza)
+    {
+      Pizza p = Get(pizza.PizzaId);
+
+      p = pizza;
+      return _db.SaveChanges() == 1;
     }
   }
 }
