@@ -25,6 +25,9 @@ the official training code
 ### docker
 
 - `docker container run -dit --rm --name sqlserver -p 1433:1433 -e 'ACCEPT_EULA=y' -e 'SA_PASSWORD=Password12345' mcr.microsoft.com/mssql/server:2017-latest`, launch a new sql server database
+- `docker container ls [-a]`, list all running containers
+- `docker container stop <container_id>`, stop the running container
+- `docker container run --name <container_name>`, run a stopped container
 
 ## maintainer
 
