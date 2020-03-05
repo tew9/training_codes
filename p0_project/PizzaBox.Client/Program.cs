@@ -16,8 +16,6 @@ namespace PizzaBox.Client
 
     private static void GetAllPizzas()
     {
-      Pizza p1 = new Pizza();
-      Pizza p2 = new Pizza();
       foreach (var p in _pr.Get())
       {
         Console.WriteLine(p.PizzaId);
