@@ -29,34 +29,29 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("PizzaId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CrustId");
-
-                    b.HasIndex("PizzaId");
 
                     b.ToTable("Crust");
 
                     b.HasData(
                         new
                         {
-                            CrustId = 637190176498305204L,
+                            CrustId = 637190495543827896L,
                             Name = "Deep Dish",
                             Price = 3.50m
                         },
                         new
                         {
-                            CrustId = 637190176498328920L,
+                            CrustId = 637190495543853809L,
                             Name = "New York Style",
                             Price = 2.50m
                         },
                         new
                         {
-                            CrustId = 637190176498328955L,
+                            CrustId = 637190495543853847L,
                             Name = "Thin Crust",
                             Price = 1.50m
                         });
@@ -78,18 +73,28 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<long?>("SizeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ToppingId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("PizzaId");
 
                     b.HasIndex("CrustId");
 
                     b.HasIndex("SizeId");
 
+                    b.ToTable("Pizza");
+                });
+
+            modelBuilder.Entity("PizzaBox.Domain.Models.PizzaTopping", b =>
+                {
+                    b.Property<long>("PizzaId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ToppingId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("PizzaId", "ToppingId");
+
                     b.HasIndex("ToppingId");
 
-                    b.ToTable("Pizza");
+                    b.ToTable("PizzaTopping");
                 });
 
             modelBuilder.Entity("PizzaBox.Domain.Models.Size", b =>
@@ -102,34 +107,29 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("PizzaId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("SizeId");
-
-                    b.HasIndex("PizzaId");
 
                     b.ToTable("Size");
 
                     b.HasData(
                         new
                         {
-                            SizeId = 637190176498337631L,
+                            SizeId = 637190495543864029L,
                             Name = "Large",
                             Price = 12.00m
                         },
                         new
                         {
-                            SizeId = 637190176498337925L,
+                            SizeId = 637190495543864352L,
                             Name = "Medium",
                             Price = 10.00m
                         },
                         new
                         {
-                            SizeId = 637190176498337942L,
+                            SizeId = 637190495543864364L,
                             Name = "Small",
                             Price = 8.00m
                         });
@@ -145,73 +145,58 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("PizzaId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ToppingId");
-
-                    b.HasIndex("PizzaId");
 
                     b.ToTable("Topping");
 
                     b.HasData(
                         new
                         {
-                            ToppingId = 637190176498338545L,
+                            ToppingId = 637190495543864993L,
                             Name = "Cheese",
                             Price = 0.25m
                         },
                         new
                         {
-                            ToppingId = 637190176498338801L,
+                            ToppingId = 637190495543865404L,
                             Name = "Pepperoni",
                             Price = 0.50m
                         },
                         new
                         {
-                            ToppingId = 637190176498338819L,
+                            ToppingId = 637190495543865426L,
                             Name = "Tomato Sauce",
                             Price = 0.75m
                         });
                 });
 
-            modelBuilder.Entity("PizzaBox.Domain.Models.Crust", b =>
-                {
-                    b.HasOne("PizzaBox.Domain.Models.Pizza", "Pizza")
-                        .WithMany()
-                        .HasForeignKey("PizzaId");
-                });
-
             modelBuilder.Entity("PizzaBox.Domain.Models.Pizza", b =>
                 {
                     b.HasOne("PizzaBox.Domain.Models.Crust", "Crust")
-                        .WithMany()
+                        .WithMany("Pizzas")
                         .HasForeignKey("CrustId");
 
                     b.HasOne("PizzaBox.Domain.Models.Size", "Size")
-                        .WithMany()
+                        .WithMany("Pizzas")
                         .HasForeignKey("SizeId");
-
-                    b.HasOne("PizzaBox.Domain.Models.Topping", null)
-                        .WithMany()
-                        .HasForeignKey("ToppingId");
                 });
 
-            modelBuilder.Entity("PizzaBox.Domain.Models.Size", b =>
+            modelBuilder.Entity("PizzaBox.Domain.Models.PizzaTopping", b =>
                 {
                     b.HasOne("PizzaBox.Domain.Models.Pizza", "Pizza")
-                        .WithMany()
-                        .HasForeignKey("PizzaId");
-                });
+                        .WithMany("PizzaToppings")
+                        .HasForeignKey("PizzaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("PizzaBox.Domain.Models.Topping", b =>
-                {
-                    b.HasOne("PizzaBox.Domain.Models.Pizza", "Pizza")
-                        .WithMany("Toppings")
-                        .HasForeignKey("PizzaId");
+                    b.HasOne("PizzaBox.Domain.Models.Topping", "Topping")
+                        .WithMany("PizzaToppings")
+                        .HasForeignKey("ToppingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

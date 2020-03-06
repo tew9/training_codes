@@ -12,12 +12,12 @@ namespace PizzaBox.Domain.Models
     {
       get
       {
-        if (Crust == null || Size == null || Toppings == null)
+        if (Crust == null || Size == null || PizzaToppings == null)
         {
           return 0;
         }
 
-        return Crust.Price + Size.Price + Toppings.Sum(t => t.Price);
+        return Crust.Price + Size.Price + PizzaToppings.Sum(pt => pt.Topping.Price);
       }
     }
 
@@ -25,7 +25,7 @@ namespace PizzaBox.Domain.Models
 
     public Crust Crust { get; set; }
     public Size Size { get; set; }
-    public List<Topping> Toppings { get; set; }
+    public List<PizzaTopping> PizzaToppings { get; set; }
 
     #endregion
 
@@ -36,7 +36,7 @@ namespace PizzaBox.Domain.Models
 
     public override string ToString()
     {
-      return $"{PizzaId} {Name ?? "N/A"} {Price} {Crust.Name ?? "N/A"} {Size.Name ?? "N/A"} {Toppings.Count}";
+      return $"{PizzaId} {Name ?? "N/A"} {Price} {Crust.Name ?? "N/A"} {Size.Name ?? "N/A"} {PizzaToppings.Count}";
     }
   }
 }

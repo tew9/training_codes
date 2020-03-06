@@ -31,7 +31,7 @@ namespace PizzaBox.Client.Singletons
       {
         Crust = crust,
         Size = size,
-        Toppings = toppings
+        //Toppings = toppings
       };
 
       return _pr.Post(p);

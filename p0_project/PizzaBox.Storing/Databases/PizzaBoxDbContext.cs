@@ -20,12 +20,14 @@ namespace PizzaBox.Storing.Databases
     {
       builder.Entity<Crust>().HasKey(c => c.CrustId);
       builder.Entity<Pizza>().HasKey(p => p.PizzaId);
+      builder.Entity<PizzaTopping>().HasKey(pt => new { pt.PizzaId, pt.ToppingId });
       builder.Entity<Size>().HasKey(s => s.SizeId);
       builder.Entity<Topping>().HasKey(t => t.ToppingId);
 
-      builder.Entity<Crust>().HasMany<Pizza>().WithOne(p => p.Crust);
-      builder.Entity<Size>().HasMany<Pizza>().WithOne(p => p.Size);
-      builder.Entity<Topping>().HasMany<Pizza>();
+      builder.Entity<Crust>().HasMany(c => c.Pizzas).WithOne(p => p.Crust);
+      builder.Entity<Pizza>().HasMany(p => p.PizzaToppings).WithOne(pt => pt.Pizza).HasForeignKey(pt => pt.PizzaId);
+      builder.Entity<Size>().HasMany(s => s.Pizzas).WithOne(p => p.Size);
+      builder.Entity<Topping>().HasMany(t => t.PizzaToppings).WithOne(pt => pt.Topping).HasForeignKey(pt => pt.ToppingId);
 
       builder.Entity<Crust>().HasData(new Crust[]
       {

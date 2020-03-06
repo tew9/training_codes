@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Domain.Abstracts
@@ -6,11 +7,5 @@ namespace PizzaBox.Domain.Abstracts
   {
     public string Name { get; set; }
     public decimal Price { get; set; }
-
-    #region NAVIGATIONAL PROPERTIES
-
-    public virtual Pizza Pizza { get; set; }
-
-    #endregion
   }
 }
