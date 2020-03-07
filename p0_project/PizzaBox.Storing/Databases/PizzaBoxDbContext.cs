@@ -29,6 +29,7 @@ namespace PizzaBox.Storing.Databases
       builder.Entity<Size>().HasMany(s => s.Pizzas).WithOne(p => p.Size);
       builder.Entity<Topping>().HasMany(t => t.PizzaToppings).WithOne(pt => pt.Topping).HasForeignKey(pt => pt.ToppingId);
 
+
       builder.Entity<Crust>().HasData(new Crust[]
       {
         new Crust() { Name = "Deep Dish", Price = 3.50M },

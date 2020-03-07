@@ -8,11 +8,15 @@ namespace PizzaBox.Client
 {
   internal class Program
   {
+    private static readonly CrustRepository _cr = new CrustRepository();
+    private static readonly PizzaRepository _pr = new PizzaRepository();
+    private static readonly SizeRepository _sr = new SizeRepository();
     private static readonly PizzeriaSingleton _ps = PizzeriaSingleton.Instance;
 
     private static void Main(string[] args)
     {
-      GetAllPizzas();
+      //GetAllPizzas();
+      PostAllPizzas();
     }
 
     private static void GetAllPizzas()
@@ -21,6 +25,14 @@ namespace PizzaBox.Client
       {
         Console.WriteLine(p);
       }
+    }
+
+    private static void PostAllPizzas()
+    {
+      var crusts = _cr.Get(); // _db1
+      var sizes = _sr.Get(); // _db2
+
+      _ps.Post(crusts[0], sizes[0], null);
     }
   }
 }

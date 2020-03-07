@@ -27,12 +27,10 @@ namespace PizzaBox.Client.Singletons
 
     public bool Post(Crust crust, Size size, List<Topping> toppings)
     {
-      var p = new Pizza()
-      {
-        Crust = crust,
-        Size = size,
-        //Toppings = toppings
-      };
+      var p = new Pizza();
+
+      crust.Pizzas = new List<Pizza> { p }; // p.crust = *crustId
+      size.Pizzas = new List<Pizza> { p };
 
       return _pr.Post(p);
     }

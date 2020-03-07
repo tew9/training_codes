@@ -31,7 +31,7 @@ namespace PizzaBox.Domain.Models
 
     public Pizza()
     {
-      PizzaId = DateTime.Now.Ticks;
+      // PizzaId = DateTime.Now.Ticks;
     }
 
     public override string ToString()
