@@ -11,6 +11,8 @@ the official training code
 - `git clone <url> [<path>]`, copy remote repository locally with tracking
 - `git status`, list the current changes
 - `git log`, list the current commits
+- `git checkout <branch name>`, exists in remote already
+- `git checkout -b <branch name>`, exists in local only
 
 ### dotnet
 
