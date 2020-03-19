@@ -12,7 +12,7 @@ stages:
           steps:
             - script: dotnet build
 
-  - stage: test
+  - stage:
       jobs:
         - job:
           pool:
@@ -20,7 +20,7 @@ stages:
           steps:
             - script: dotnet test --collect:"XPlat Code Coverage"
 
-  - stage: pack
+  - stage:
       jobs:
         - job:
           pool:
