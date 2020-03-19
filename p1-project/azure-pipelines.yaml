@@ -4,23 +4,25 @@ pr:
   - master
 
 stages:
-  - stage:
+  - stage: build
     jobs:
       - job:
         pool:
           vmImage: ubuntu-18.04
         steps:
           - script: dotnet build
+            workingDirectory: ./p1_project
 
-  - stage:
+  - stage: test
     jobs:
       - job:
         pool:
           vmImage: ubuntu-18.04
         steps:
           - script: dotnet test --collect:"XPlat Code Coverage"
+            workingDirectory: ./p1_project
 
-  - stage:
+  - stage: pack
     jobs:
       - job:
         pool:
@@ -31,6 +33,7 @@ stages:
               docker image build -f dockerfile -t fredbelotte/p1proj .
               docker image push fredbelotte/p1proj
               docker logout
+            workingDirectory: ./p1_project
 
 trigger:
   - master
