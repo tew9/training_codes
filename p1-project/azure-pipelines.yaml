@@ -4,9 +4,9 @@ pr:
   - master
 
 stages:
-  - stage: build
+  - stage:
       jobs:
-        - job: build_dotnet
+        - job:
           pool:
             vmImage: ubuntu-18.04
           steps:
@@ -14,7 +14,7 @@ stages:
 
   - stage: test
       jobs:
-        - job: test
+        - job:
           pool:
             vmImage: ubuntu-18.04
           steps:
