@@ -61,6 +61,21 @@ stages:
               containerRegistry: "docker"
               command: "logout"
 
+  - stage: deploy
+    jobs:
+      - job:
+        pool:
+          vmImage: ubuntu-18.04
+        steps:
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: "AzureRM"
+              azureSubscription: "fredbelotte(1)(560df603-82d8-4415-93a1-c821e91a310d)"
+              appType: "webAppContainer"
+              WebAppName: "trainingdotnet2020"
+              DockerNamespace: "fredbelotte"
+              DockerRepository: "p1proj"
+
 trigger:
   - master
 
