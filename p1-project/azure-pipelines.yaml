@@ -29,20 +29,19 @@ stages:
           vmImage: ubuntu-18.04
         steps:
           - task: Docker@2
-              inputs:
-                containerRegistry: 'docker'
-                command: 'login'
+            inputs:
+              containerRegistry: "docker"
+              command: "login"
           - script: |
               docker image build -f dockerfile -t $DOCKER_IMAGE .
               docker image push $DOCKER_IMAGE
             workingDirectory: $(working_dir)
             env:
               DOCKER_IMAGE: $(image_name)
-              DOCKER_LOGIN: $(docker_login)
           - task: Docker@2
-              inputs:
-                containerRegistry: 'docker'
-                command: 'logout'
+            inputs:
+              containerRegistry: "docker"
+              command: "logout"
 
 trigger:
   - master
