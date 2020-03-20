@@ -47,5 +47,7 @@ trigger:
   - master
 
 variables:
-  - image_name: fredbelotte/p1proj
-  - working_dir: $(System.DefaultWorkingDirectory)/p1-project
+  - name: image_name
+    value: fredbelotte/p1proj
+  - name: working_dir
+    value: $(System.DefaultWorkingDirectory)/p1-project
