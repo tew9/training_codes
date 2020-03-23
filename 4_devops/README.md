@@ -50,3 +50,14 @@ the process of creating a product through requirements, design, development, tes
   - standup daily [what did you do, what are you doing, any blocker/impediment]
 - capacity = number of workable hours [20-25 hours]
 - velocity = degree of effort (unitless) [linear, binary, fibonacci series][ex. 1,2,3,5,8]
+
+## Docker
+
+- dockerfile
+  a set of instructions to generate an image (configuration)
+- image
+  a representational unit of application binary and dependencies, definition of the application
+- container
+  a running instance of an image
+- registry
+  a collection of image repository
