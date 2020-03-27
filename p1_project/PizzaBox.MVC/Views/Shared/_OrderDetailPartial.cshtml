@@ -1,0 +1,10 @@
+@model IEnumerable<string>
+
+<ul>
+  @foreach (var item in @Model.ToList())
+  {
+    <li>
+      <span>@item</span>
+    </li>
+  }
+</ul>

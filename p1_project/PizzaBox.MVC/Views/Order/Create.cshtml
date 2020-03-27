@@ -1,0 +1,4 @@
+@model PizzaBox.MVC.Models.OrderViewModel
+
+@Html.Partial("_OrderPartial", @Model)
+@Html.Partial("_OrderDetailPartial", @Model.Orders)

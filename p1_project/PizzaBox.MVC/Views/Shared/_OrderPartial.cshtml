@@ -1,0 +1,32 @@
+@model PizzaBox.MVC.Models.OrderViewModel
+
+<form action="/order/create" method="post">
+  @Html.AntiForgeryToken()
+
+  <label for="@Model.Crust">Crust</label>
+  <select asp-for="@Model.Crust">
+    @foreach (var item in @Model.CrustList)
+    {
+      <option value="@item">@item</option>
+    }
+  </select>
+
+  <label for="@Model.Size">Size</label>
+  @foreach (var item in @Model.SizeList)
+  {
+    <input type="radio" asp-for="@Model.Size" value="@item" />
+    <label asp-for="@Model.Size">@item</label>
+  }
+
+  <label for="@Model.Toppings">Toppings</label>
+  @foreach(var item in @Model.ToppingList)
+  {
+    <input type="checkbox" name="Toppings" id="Toppings" value="@item" />
+    <label for="@Model.Toppings">@item</label>
+  }
+
+  <label for="@Model.Quantity">Quantity</label>
+  <input type="number" asp-for="@Model.Quantity" />
+
+  <button type="submit">add to order</button>
+</form>
