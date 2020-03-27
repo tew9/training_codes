@@ -35,11 +35,5 @@ namespace MovieWorld.API.Controllers
       })
       .ToArray();
     }
-
-    [HttpGet]
-    public IEnumerable<string> Post()
-    {
-      return Summaries.ToArray();
-    }
   }
 }
