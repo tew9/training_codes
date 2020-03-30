@@ -6,6 +6,7 @@ services:
     build:
       context: Webflix/Webflix.MVC
       dockerfile: ../../.docker/mvc.dockerfile
+    image: fredbelotte/mvcproj
     ports:
       - 5000:80
     networks:
@@ -14,6 +15,7 @@ services:
     build:
       context: Webflix/Webflix.API
       dockerfile: ../../.docker/api.dockerfile
+    image: fredbelotte/apiproj
     ports:
       - 4000:80
     networks:
