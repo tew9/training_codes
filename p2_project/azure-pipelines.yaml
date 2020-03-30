@@ -8,10 +8,10 @@ stages:
     jobs:
       - job: build_mvc
         steps:
-          - script: dotnet build --project Webflix.MVC/*.csproj
+          - script: dotnet build Webflix/Webflix.MVC/*.csproj
       - job: build_api
         steps:
-          - script: dotnet build --project Webflix.API/*.csproj
+          - script: dotnet build Webflix/Webflix.API/*.csproj
 
   - stage: test
     jobs:
@@ -29,8 +29,7 @@ stages:
               name: "dotnet-sonarscanner"
           - script: |
               dotnet sonarscanner begin /k:"webflix_mvc" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.login=$SONAR_LOGIN
-              dotnet build
-              dotnet test
+              dotnet build Webflix/Webflix.MVC/*.csproj
               dotnet sonarscanner end /d:sonar.login=$SONAR_LOGIN
             env:
               SONAR_LOGIN: $(sonar.login)
@@ -44,8 +43,7 @@ stages:
               name: "dotnet-sonarscanner"
           - script: |
               dotnet sonarscanner begin /k:"webflix_api" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.login=$SONAR_LOGIN
-              dotnet build
-              dotnet test
+              dotnet build Webflix/Webflix.API/*.csproj
               dotnet sonarscanner end /d:sonar.login=$SONAR_LOGIN
             env:
               SONAR_LOGIN: $(sonar.login)
