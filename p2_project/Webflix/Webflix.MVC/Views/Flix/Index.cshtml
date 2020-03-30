@@ -1,0 +1,8 @@
+@model IEnumerable<Webflix.MVC.Models.FlixViewModel>
+
+<ul>
+  @foreach (var item in @Model)
+  {
+    <li>@item.Title</li>
+  }
+</ul>
