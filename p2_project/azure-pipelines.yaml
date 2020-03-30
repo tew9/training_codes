@@ -29,7 +29,7 @@ stages:
               name: "dotnet-sonarscanner"
           - script: |
               dotnet sonarscanner begin /k:"webflix_mvc" /o:"2002-24-dotnet" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.login=$SONAR_LOGIN
-              dotnet build p2_project/Webflix/Webflix.MVC/*.csproj
+              dotnet build p2_project/Webflix/*.sln
               dotnet sonarscanner end /d:sonar.login=$SONAR_LOGIN
             env:
               SONAR_LOGIN: $(sonar.login)
@@ -43,7 +43,7 @@ stages:
               name: "dotnet-sonarscanner"
           - script: |
               dotnet sonarscanner begin /k:"webflix_api" /o:"2002-24-dotnet" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.login=$SONAR_LOGIN
-              dotnet build p2_project/Webflix/Webflix.API/*.csproj
+              dotnet build p2_project/Webflix/*.sln
               dotnet sonarscanner end /d:sonar.login=$SONAR_LOGIN
             env:
               SONAR_LOGIN: $(sonar.login)
